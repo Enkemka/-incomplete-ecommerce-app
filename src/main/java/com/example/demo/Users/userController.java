@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin(origins = {"http://127.0.0.1:5500", "http://localhost:5500"})
@@ -51,6 +53,19 @@ public class userController {
 
 
 
+
+
+
+    @GetMapping("/user")
+    public ResponseEntity<userDto> findByUserName(@RequestParam String name){
+       return ResponseEntity.ok(UserService.findByUserName(name));
+    }
+
+
+    @GetMapping("/userSearchList")
+    public List<userDto> findByUserNameContainingIgnoreCase(@RequestParam String name){
+        return UserService.findByUserNameContainingIgnoreCase(name);
+    }
 
 
 

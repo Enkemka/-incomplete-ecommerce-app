@@ -24,6 +24,8 @@ public class SecConfig {
         http.csrf(customizer -> customizer.disable());
         http.authorizeHttpRequests(request -> request
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/user/**").hasRole("USER")
+                .requestMatchers("/public/**").permitAll()
                 .anyRequest().authenticated());
 
 

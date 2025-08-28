@@ -126,6 +126,28 @@ public class userService {
 
 
 
+
+    //when you click on search
+    public userDto findByUserName(String userName){
+        return userRepo.findByUserName(userName)
+                .map(User -> new userDto(User.getUserName(),User.getCreationDate(),User.getRole()))
+                .orElse(null);
+    }
+
+
+    //for search list
+    public List<userDto> findByUserNameContainingIgnoreCase(String userName){
+        return userRepo.findByUserNameContainingIgnoreCase(userName)
+                .stream()
+                .map(User -> new userDto(User.getUserName(),User.getCreationDate(),User.getRole()))
+                .toList();
+    }
+
+
+
+
+
+
         //order history
 
     //show all
